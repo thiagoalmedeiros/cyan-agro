@@ -1,19 +1,17 @@
 version: '3'
 
 services:
-  teste-postgres-compose:
+  db-postgres-compose:
     image: kartoza/postgis
     environment:
       POSTGRES_USER: "postgres"
       POSTGRES_PASS: "postgres"
     ports:
       - "5432:5432"
-    volumes:
-      - /Users/thiagoalmeidademedeiros/Developer/postgres-volume
     networks:
       - postgres-compose-network
       
-  teste-pgadmin-compose:
+  view-pgadmin-compose:
     image: dpage/pgadmin4
     environment:
       PGADMIN_DEFAULT_EMAIL: "admin"
@@ -21,7 +19,7 @@ services:
     ports:
       - "16543:80"
     depends_on:
-      - teste-postgres-compose
+      - db-postgres-compose
     networks:
       - postgres-compose-network
 
