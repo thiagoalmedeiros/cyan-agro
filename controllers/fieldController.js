@@ -1,8 +1,12 @@
-const { Fields } = require('../database/models');
+const { Fields, Farms } = require('../database/models');
 
 exports.getAll = async function (req, res) {
     try {
-        const fields = await Fields.findAll({ where: req.query });
+        const fields = await Fields.findAll({ where: req.query,
+            include: [{
+                model: Farms,
+                as: 'farm'}
+            ] });
         res.status(200).json({ data: fields })
     } catch (error) {
         console.log('Error: ', error)
