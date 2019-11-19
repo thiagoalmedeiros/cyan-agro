@@ -6,6 +6,10 @@ module.exports = (sequelize, DataTypes) => {
                 type: DataTypes.STRING,
                 allowNull: false,
             },
+            point: {
+                type: DataTypes.GEOMETRY('POINT'),
+                allowNull: false,
+            }
         },
         {
             paranoid: true,

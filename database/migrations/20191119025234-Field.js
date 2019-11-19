@@ -10,6 +10,10 @@ module.exports = {
           allowNull: false,
           type: Sequelize.STRING,
       },
+      point: {
+        type: Sequelize.GEOMETRY('POINT'),
+        allowNull: false,
+    },
       farmId: {
         allowNull: false,
         type: Sequelize.INTEGER,
