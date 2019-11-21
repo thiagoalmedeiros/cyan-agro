@@ -4,13 +4,25 @@ import Snackbar from "@material-ui/core/Snackbar";
 import IconButton from "@material-ui/core/IconButton";
 
 
-export class EditMillModel extends Component {
+export class EditFarmModel extends Component {
 
     constructor(props){
         super(props);
 
-        this.state = { snackbaropen: false, snackbarmsg: ''};
+        this.state = { harvests: [], snackbaropen: false, snackbarmsg: ''};
         this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    refresh() {
+        fetch('http://localhost:8000/farms').then(response => response.json()).then(data => {
+            data = data.data;
+            this.setState({
+                harvests: data
+            })
+        })
+    }
+    componentDidMount() {
+        this.refresh();
     }
 
     snackbarClose = (event) => {
@@ -21,7 +33,7 @@ export class EditMillModel extends Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        fetch('http://localhost:8000/mills/'+ event.target.id.value, {
+        fetch('http://localhost:8000/farms/'+ event.target.id.value, {
             method: 'PUT',
             headers: {
                 'Accept': 'application/json',
@@ -29,16 +41,30 @@ export class EditMillModel extends Component {
             },
             body: JSON.stringify({
                 id: event.target.id.value,
-                name: event.target.name.value
+                code: event.target.code.value,
+                name: event.target.name.value,
+                harvestId: event.target.harvestId.value
             })
         }).then(res => {
             if(res.status === 204) {
-                this.setState({snackbaropen: true, snackbarmsg: 'update successfully!'})
+                this.setState({snackbaropen: true, snackbarmsg: 'update successfully!'});
+                this.props.updatelist();
             } else {
                 this.setState({snackbaropen: true, snackbarmsg: 'error performing update!'})
             }
         });
     }
+
+    formatDate(date) {
+
+        if(date !== null && date !== undefined){
+            let newDate = date.split('T')[0];
+            return newDate;
+        } else {
+            return '';
+        }
+    }
+
 
     render() {
         return (
@@ -65,7 +91,7 @@ export class EditMillModel extends Component {
                 >
                     <Modal.Header CloseButton>
                         <Modal.Title id="contained-modal-title-vcenter">
-                            Edit Mill
+                            Edit Farm
                         </Modal.Title>
                     </Modal.Header>
 
@@ -74,25 +100,33 @@ export class EditMillModel extends Component {
                             <Col sm={6}>
                                 <Form onSubmit={this.handleSubmit}>
                                     <Form.Group controlId="id">
-                                        <Form.Label  column={6}>Name</Form.Label>
-                                        <Form.Control
-                                            type='text'
-                                            name='id'
-                                            disabled
-                                            defaultValue = {this.props.id}
-                                            placeholder='Mill Id'/>
+                                        <Form.Label  column={6}>Id</Form.Label>
+                                        <Form.Control type='text' name='id' disabled  defaultValue = {this.props.id} placeholder='id'/>
+
                                     </Form.Group>
+                                    <Form.Group controlId="code">
+                                        <Form.Label  column={6}>Code</Form.Label>
+                                        <Form.Control type='text' name='code'   defaultValue = {this.props.code} placeholder='Harvest code'/>
+
+                                    </Form.Group>
+
                                     <Form.Group controlId="name">
                                         <Form.Label  column={6}>Name</Form.Label>
-                                        <Form.Control
-                                            type='text'
-                                            required
-                                            name='name'
-                                            defaultValue = {this.props.name}
-                                            placeholder='Mill name'/>
+                                        <Form.Control type='text' name='name'  defaultValue={this.props.name} placeholder='Name'/>
+
                                     </Form.Group>
+
+                                    <Form.Group controlId="harvestId">
+                                        <Form.Label  column={6}>Mill</Form.Label>
+                                        <Form.Control as="select" defaultValue={this.props.harvestId}>
+                                            {this.state.harvests.map(harvest =>
+                                                <option key={harvest.id} value={harvest.id}>{harvest.code}</option>
+                                            )}
+                                        </Form.Control>
+                                    </Form.Group>
+
                                     <Form.Group>
-                                        <Button variant='primary' type='submit'>Update Mill</Button>
+                                        <Button variant='primary' type='submit'>Update Farm</Button>
                                     </Form.Group>
                                 </Form>
                             </Col>

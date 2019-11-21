@@ -1,7 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c809386e-3323-4f98-a37c-414454fa6915" name="Default Changelist" comment="" />
+    <list default="true" id="c809386e-3323-4f98-a37c-414454fa6915" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/MapContainer.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/farm/AddFarmModal.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/farm/EditFarmModal.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/farm/Farm.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/field/AddFieldModal.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/field/EditFieldModal.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/field/Field.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/harvest/AddHarvestModal.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/harvest/Harvest.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/mill/EditMillModal.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/static/leaf.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/static/leaf.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cyan-agro-backend/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../cyan-agro-backend/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.test.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Harvest.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Home.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Home.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Navigation.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Navigation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/mill/EdiMillModal.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/harvest/EditHarvestModal.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/mill/Mill.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/mill/Mill.js" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,16 +40,29 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
   <component name="ProjectId" id="1Tr9AjDfbk8NEO3QCFkBYwPTjoB" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/components" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/components" />
+      <recent name="$PROJECT_DIR$/src/static" />
+      <recent name="$PROJECT_DIR$/src/data" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/static" />
+      <recent name="$PROJECT_DIR$/src" />
+      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/src/components/mill" />
     </key>
   </component>
@@ -52,10 +90,22 @@
       <updated>1574207205993</updated>
       <workItem from="1574207208276" duration="3130000" />
       <workItem from="1574212409538" duration="7828000" />
+      <workItem from="1574249828747" duration="35016000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>
