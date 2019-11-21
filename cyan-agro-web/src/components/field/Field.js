@@ -3,7 +3,7 @@ import {Table} from 'react-bootstrap';
 import {Button, ButtonToolbar} from "react-bootstrap";
 import {AddFieldModal} from "./AddFieldModal";
 import {EditFieldModel} from "./EditFieldModal";
-
+import {URL_BACKEND} from "../../constants";
 
 export class Field extends Component {
 
@@ -14,7 +14,7 @@ export class Field extends Component {
 
     
     refreshList() {
-       fetch('http://localhost:8000/fields').then(response => response.json()).then(data => {
+       fetch(`${URL_BACKEND}/fields`).then(response => response.json()).then(data => {
            data = data.data;
            this.setState({
                fields: data,
@@ -26,7 +26,7 @@ export class Field extends Component {
 
     deleteField(id) {
         if(window.confirm('Are you sure?')){
-            fetch('http://localhost:8000/fields/'+id, {
+            fetch(`${URL_BACKEND}/fields/${id}`, {
                 method: 'DELETE',
                 headers: {
                     'Accept': 'application/json',

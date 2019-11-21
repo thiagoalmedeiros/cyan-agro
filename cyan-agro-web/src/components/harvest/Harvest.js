@@ -3,7 +3,7 @@ import {Table} from 'react-bootstrap';
 import {Button, ButtonToolbar} from "react-bootstrap";
 import {AddHarvestModal} from "./AddHarvestModal";
 import {EditHarvestModel} from "./EditHarvestModal";
-
+import {URL_BACKEND} from "../../constants";
 
 export class Harvest extends Component {
 
@@ -14,7 +14,7 @@ export class Harvest extends Component {
 
     
     refreshList() {
-       fetch('http://localhost:8000/harvests').then(response => response.json()).then(data => {
+       fetch(`${URL_BACKEND}/harvests`).then(response => response.json()).then(data => {
            data = data.data;
            this.setState({
                harvests: data,
@@ -23,10 +23,14 @@ export class Harvest extends Component {
            })
        })
     }
+    formatDate(date) {
+        date = date.split('T')[0].split('-');
+        return `${date[2]}/${date[1]}/${date[0]}`
+    }
 
     deleteHarvest(id) {
         if(window.confirm('Are you sure?')){
-            fetch('http://localhost:8000/harvests/'+id, {
+            fetch(  `${URL_BACKEND}/harvests/${id}`, {
                 method: 'DELETE',
                 headers: {
                     'Accept': 'application/json',
@@ -81,8 +85,8 @@ export class Harvest extends Component {
                             <tr key={harvest.id}>
                                 <td>{harvest.id}</td>
                                 <td>{harvest.code}</td>
-                                <td>{harvest.startDate}</td>
-                                <td>{harvest.endDate}</td>
+                                <td>{this.formatDate(harvest.startDate)}</td>
+                                <td>{this.formatDate(harvest.endDate)}</td>
                                 <td>{harvest.mill.name}</td>
                                 <td>
                                     <ButtonToolbar>

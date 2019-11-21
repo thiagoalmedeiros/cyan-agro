@@ -3,7 +3,7 @@ import {Modal, Button, Row, Form, Col} from 'react-bootstrap';
 import Snackbar from "@material-ui/core/Snackbar";
 import IconButton from "@material-ui/core/IconButton";
 import Map from "../MapContainer";
-
+import {URL_BACKEND} from "../../constants";
 
 export class EditFieldModel extends Component {
 
@@ -15,7 +15,7 @@ export class EditFieldModel extends Component {
     }
 
     refresh() {
-        fetch('http://localhost:8000/farms').then(response => response.json()).then(data => {
+        fetch(`${URL_BACKEND}/farms`).then(response => response.json()).then(data => {
             data = data.data;
             this.setState({
                 farms: data
@@ -34,7 +34,7 @@ export class EditFieldModel extends Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        fetch('http://localhost:8000/fields/'+ event.target.id.value, {
+        fetch( `${URL_BACKEND}/fields/${event.target.id.value}`, {
             method: 'PUT',
             headers: {
                 'Accept': 'application/json',

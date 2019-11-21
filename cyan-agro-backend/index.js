@@ -14,6 +14,7 @@ const fieldRouter = require('./routers/fieldRouter');
 const millRouter = require('./routers/millRouter');
 const harvestRouter = require('./routers/harvestRouter');
 const farmRouter = require('./routers/farmRouter');
+const dashboardRouter = require('./routers/dashboardRouter');
 
 app.get('/', (req, res) => {
     res.send('Server running...');
@@ -23,6 +24,7 @@ app.use('/fields', fieldRouter);
 app.use('/mills', millRouter);
 app.use('/harvests', harvestRouter);
 app.use('/farms', farmRouter);
+app.use('/dashboard', dashboardRouter);
 
 
 const port = process.env.PORT || 8000;

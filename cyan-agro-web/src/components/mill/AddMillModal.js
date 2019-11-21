@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Modal, Button, Row, Form, Col} from 'react-bootstrap';
 import Snackbar from "@material-ui/core/Snackbar";
 import IconButton from "@material-ui/core/IconButton";
-
+import {URL_BACKEND} from "../../constants";
 
 export class AddMillModel extends Component {
 
@@ -21,7 +21,7 @@ export class AddMillModel extends Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        fetch('http://localhost:8000/mills', {
+        fetch(`${URL_BACKEND}/mills`, {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -31,7 +31,9 @@ export class AddMillModel extends Component {
                 name: event.target.name.value
             })
         }).then(res => res.json()).then((result) => {
-            this.setState({snackbaropen: true, snackbarmsg: result.data.message})
+            this.setState({snackbaropen: true, snackbarmsg: result.data.message}, ()=>{
+                this.props.updatelist();
+            })
         }, (error) => {
             this.setState({snackbaropen: true, snackbarmsg: error.data.message})
         })

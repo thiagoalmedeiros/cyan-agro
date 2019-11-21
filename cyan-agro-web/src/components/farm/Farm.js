@@ -3,7 +3,7 @@ import {Table} from 'react-bootstrap';
 import {Button, ButtonToolbar} from "react-bootstrap";
 import {AddFarmModal} from "./AddFarmModal";
 import {EditFarmModel} from "./EditFarmModal";
-
+import {URL_BACKEND} from "../../constants";
 
 export class Farm extends Component {
 
@@ -14,7 +14,7 @@ export class Farm extends Component {
 
     
     refreshList() {
-       fetch('http://localhost:8000/farms').then(response => response.json()).then(data => {
+       fetch(`${URL_BACKEND}/farms`).then(response => response.json()).then(data => {
            data = data.data;
            this.setState({
                farms: data,
@@ -26,7 +26,7 @@ export class Farm extends Component {
 
     deleteFarm(id) {
         if(window.confirm('Are you sure?')){
-            fetch('http://localhost:8000/farms/'+id, {
+            fetch(`${URL_BACKEND}/farms/`+id, {
                 method: 'DELETE',
                 headers: {
                     'Accept': 'application/json',

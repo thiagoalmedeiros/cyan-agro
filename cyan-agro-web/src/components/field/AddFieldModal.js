@@ -3,19 +3,19 @@ import {Modal, Button, Row, Form, Col} from 'react-bootstrap';
 import Snackbar from "@material-ui/core/Snackbar";
 import IconButton from "@material-ui/core/IconButton";
 import Map from "../MapContainer";
-
+import {URL_BACKEND} from "../../constants";
 
 export class AddFieldModal extends Component {
 
     constructor(props){
         super(props);
 
-        this.state = { farms: [], snackbaropen: false, snackbarmsg: '', lat: 45.38332153627205, lng: -75.3372987731628};
+        this.state = { farms: [], snackbaropen: false, snackbarmsg: '', lat: 0, lng: 0};
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     refresh() {
-        fetch('http://localhost:8000/farms').then(response => response.json()).then(data => {
+        fetch( `${URL_BACKEND}/farms`).then(response => response.json()).then(data => {
             data = data.data;
             this.setState({
                 farms: data
@@ -36,7 +36,7 @@ export class AddFieldModal extends Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        fetch('http://localhost:8000/fields', {
+        fetch(`${URL_BACKEND}/fields`, {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -94,7 +94,7 @@ export class AddFieldModal extends Component {
                                    <Form onSubmit={this.handleSubmit}>
                                        <Form.Group controlId="code">
                                            <Form.Label  column={6}>Code</Form.Label>
-                                           <Form.Control type='text' name='code' placeholder='Farm code'/>
+                                           <Form.Control type='text' name='code' placeholder='Field code'/>
 
                                        </Form.Group>
 

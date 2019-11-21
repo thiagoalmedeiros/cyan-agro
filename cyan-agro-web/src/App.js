@@ -13,7 +13,7 @@ import {Field} from "./components/field/Field";
 function App() {
   return (
       <BrowserRouter>
-        <div className="container" style={{height: '80vh'}}>
+        <div className="container" style={{height: '60vh'}}>
             <h3 className='m-3 d-flex justify-content-center'> Cyan-Agro Challenge</h3>
             <Navigation></Navigation>
             <Switch>

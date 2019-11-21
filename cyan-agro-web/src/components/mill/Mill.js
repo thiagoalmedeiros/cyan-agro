@@ -3,7 +3,7 @@ import {Table} from 'react-bootstrap';
 import {Button, ButtonToolbar} from "react-bootstrap";
 import {AddMillModel} from "./AddMillModal";
 import {EditMillModel} from "./EditMillModal";
-
+import {URL_BACKEND} from "../../constants";
 
 export class Mill extends Component {
 
@@ -14,7 +14,7 @@ export class Mill extends Component {
 
     
     refreshList() {
-       fetch('http://localhost:8000/mills').then(response => response.json()).then(data => {
+       fetch( `${URL_BACKEND}/mills`).then(response => response.json()).then(data => {
            data = data.data;
            this.setState({
                mills: data,
@@ -26,7 +26,7 @@ export class Mill extends Component {
 
     deleteMill(id) {
         if(window.confirm('Are you sure?')){
-            fetch('http://localhost:8000/mills/'+id, {
+            fetch(`${URL_BACKEND}/mills/${id}`, {
                 method: 'DELETE',
                 headers: {
                     'Accept': 'application/json',
@@ -50,6 +50,7 @@ export class Mill extends Component {
         const {mills, id, name} = this.state;
         let addModalClose = () => this.setState({addModalShow: false});
         let editModalClose = () => this.setState({editModalShow: false});
+        let updateList = () => this.refreshList();
         return(
             <div>
                 <Table className='mt-4' striped bordered hover size='sm'>
@@ -78,6 +79,7 @@ export class Mill extends Component {
                                         <EditMillModel
                                             show={this.state.editModalShow}
                                             onHide={editModalClose}
+                                            updatelist={updateList}
                                             id={id}
                                             name={name}
                                         />
@@ -91,7 +93,7 @@ export class Mill extends Component {
                 <ButtonToolbar>
                     <Button variant='primary' onClick={()=> this.setState({addModalShow: true})}> Add Mill</Button>
                 </ButtonToolbar>
-                <AddMillModel show={this.state.addModalShow} onHide={addModalClose}/>
+                <AddMillModel show={this.state.addModalShow} onHide={addModalClose} updatelist={updateList}/>
 
             </div>
         )

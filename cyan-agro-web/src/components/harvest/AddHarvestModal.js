@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Modal, Button, Row, Form, Col} from 'react-bootstrap';
 import Snackbar from "@material-ui/core/Snackbar";
 import IconButton from "@material-ui/core/IconButton";
-
+import {URL_BACKEND} from "../../constants";
 
 export class AddHarvestModal extends Component {
 
@@ -14,7 +14,7 @@ export class AddHarvestModal extends Component {
     }
 
     refresh() {
-        fetch('http://localhost:8000/mills').then(response => response.json()).then(data => {
+        fetch( `${URL_BACKEND}/mills`).then(response => response.json()).then(data => {
             data = data.data;
             this.setState({
                 mills: data
@@ -34,7 +34,7 @@ export class AddHarvestModal extends Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        fetch('http://localhost:8000/harvests', {
+        fetch(`${URL_BACKEND}/harvests`, {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',

@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Modal, Button, Row, Form, Col} from 'react-bootstrap';
 import Snackbar from "@material-ui/core/Snackbar";
 import IconButton from "@material-ui/core/IconButton";
-
+import {URL_BACKEND} from "../../constants";
 
 export class EditMillModel extends Component {
 
@@ -22,7 +22,7 @@ export class EditMillModel extends Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        fetch('http://localhost:8000/mills/'+ event.target.id.value, {
+        fetch(`${URL_BACKEND}/mills/${event.target.id.value}`, {
             method: 'PUT',
             headers: {
                 'Accept': 'application/json',
@@ -34,7 +34,9 @@ export class EditMillModel extends Component {
             })
         }).then(res => {
             if(res.status === 204) {
-                this.setState({snackbaropen: true, snackbarmsg: 'update successfully!'})
+                this.setState({snackbaropen: true, snackbarmsg: 'update successfully!'}, ()=>{
+                    this.props.updatelist();
+                })
             } else {
                 this.setState({snackbaropen: true, snackbarmsg: 'error performing update!'})
             }

@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Modal, Button, Row, Form, Col} from 'react-bootstrap';
 import Snackbar from "@material-ui/core/Snackbar";
 import IconButton from "@material-ui/core/IconButton";
-
+import {URL_BACKEND} from "../../constants";
 
 export class EditFarmModel extends Component {
 
@@ -14,7 +14,7 @@ export class EditFarmModel extends Component {
     }
 
     refresh() {
-        fetch('http://localhost:8000/farms').then(response => response.json()).then(data => {
+        fetch( `${URL_BACKEND}/harvests`).then(response => response.json()).then(data => {
             data = data.data;
             this.setState({
                 harvests: data
@@ -33,7 +33,7 @@ export class EditFarmModel extends Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        fetch('http://localhost:8000/farms/'+ event.target.id.value, {
+        fetch( `${URL_BACKEND}/farms/${ event.target.id.value}`, {
             method: 'PUT',
             headers: {
                 'Accept': 'application/json',
@@ -54,17 +54,6 @@ export class EditFarmModel extends Component {
             }
         });
     }
-
-    formatDate(date) {
-
-        if(date !== null && date !== undefined){
-            let newDate = date.split('T')[0];
-            return newDate;
-        } else {
-            return '';
-        }
-    }
-
 
     render() {
         return (
