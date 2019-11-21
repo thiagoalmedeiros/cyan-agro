@@ -17,7 +17,7 @@ exports.getAll = async function (req, res) {
          });
         res.status(200).json({ data: farms })
     } catch (error) {
-        console.log('Error: ', error)
+        console.log('Error: ', error);
         res.status(500).json({ data: { message: 'Unexpected error retrieving farms' } })
     }
 };
@@ -70,9 +70,16 @@ exports.delete = async function (req, res) {
         const farm = await Farms.findOne({
             where: {
                 id: req.params.id
-            },
+            },include: [
+                {
+                    model: Fields,
+                    as: 'fields'
+                }
+            ]
         });
-        if (farm) {
+        if(farm && farm.fields.length > 0) {
+            res.status(500).json({ data: { message: 'Before removing any farm change the associated fields' } })
+        } else if (farm) {
             await farm.destroy();
         } else {
             res.status(400).json({ data: { message: 'Farm not found' } })

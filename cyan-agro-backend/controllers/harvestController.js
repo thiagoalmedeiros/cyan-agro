@@ -68,14 +68,21 @@ exports.delete = async function (req, res) {
         const harvest = await Harvests.findOne({
             where: {
                 id: req.params.id
-            },
+            }, include: [
+                {
+                    model: Farms,
+                    as: 'farms'
+                }]
         });
-        if (harvest) {
+        if(harvest && harvest.farms.length > 0) {
+            res.status(500).json({ data: { message: 'Before removing any harvest change the associated farms' } })
+        } else if (harvest) {
             await harvest.destroy();
+            res.status(204).send();
         } else {
             res.status(400).json({ data: { message: 'Harvest not found' } })
         }
-        res.status(204).send()
+
     } catch (error) {
         console.log('Error: ', error)
         res.status(500).json({ data: { message: 'Unexpected error trying to remove a harvest' } })

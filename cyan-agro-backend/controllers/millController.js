@@ -24,7 +24,7 @@ exports.get = async function (req, res) {
             res.status(400).json({ data: { message: 'Mill not find' } })
         }
     } catch (error) {
-        console.log('Error: ', error)
+        console.log('Error: ', error);
         res.status(500).json({ data: { message: 'Unexpected error retrieving mill' } })
     }
 };
@@ -34,7 +34,7 @@ exports.add = async function (req, res) {
         const result = await Mills.create(req.body);
         res.status(201).json({ data: { message: "Successfully created mill with id: " + result.id } });
     } catch (error) {
-        console.log('Error: ', error)
+        console.log('Error: ', error);
         res.status(500).json({ data: { message: 'Unexpected error creating a mill' } })
     }
 }
@@ -63,16 +63,23 @@ exports.delete = async function (req, res) {
         const mill = await Mills.findOne({
             where: {
                 id: req.params.id
-            },
+            }, include: [{
+                model: Harvests,
+                as: 'harvests'
+            }]
+
         });
-        if (mill) {
+        if(mill && mill.harvests.length > 0) {
+            res.status(500).json({ data: { message: 'Before removing any mill change the associated harvests' } })
+        } else if (mill) {
             await mill.destroy();
+            res.status(204).send();
         } else {
             res.status(400).json({ data: { message: 'Mill not found' } })
         }
-        res.status(204).send()
+
     } catch (error) {
-        console.log('Error: ', error)
+        console.log('Error: ', error);
         res.status(500).json({ data: { message: 'Unexpected error trying to remove a mill' } })
     }
 };
