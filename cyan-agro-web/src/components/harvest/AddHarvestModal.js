@@ -32,6 +32,14 @@ export class AddHarvestModal extends Component {
         })
     };
 
+    formatStartDate(date) {
+        date = date.split('T')[0]+ 'T00:00:00';
+        return date
+    }
+    formatEndDate(date) {
+        date = date.split('T')[0]+ 'T23:59:59';
+        return date
+    }
     handleSubmit(event) {
         event.preventDefault();
         fetch(`${URL_BACKEND}/harvests`, {
@@ -42,8 +50,8 @@ export class AddHarvestModal extends Component {
             },
             body: JSON.stringify({
                 code: event.target.code.value,
-                startDate: event.target.startDate.value,
-                endDate: event.target.endDate.value,
+                startDate: this.formatStartDate(event.target.startDate.value),
+                endDate: this.formatEndDate(event.target.endDate.value),
                 millId: event.target.millId.value
             })
         }).then(res => res.json()).then((result) => {

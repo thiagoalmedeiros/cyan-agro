@@ -21,17 +21,25 @@ docker-compose up -d
 
 Once executed, go to [link](http://localhost:16543) to enter the pgadmin dashboard the password and user must be ```admin```, ```admin``` respectively. Use "db-postgres-compose" as hostname to create database server  and ```postgres``` with username and password ```postgres```.
 
+## Backend
+
+First go to the corresponding folder:
+
+```sh
+cd cyan-agro-backend
+```
+
 ### Configuring the application
 
 Please [download][https://nodejs.org/en/download/) from Nodejs on the official Nodejs website and install according to your operating system.
 
 Once installed, run at the root of the project the command:
-```sh
+```
 npm install
 ```
 
 After successfully installing the dependencies, we now need to create the entities in the database, so first create the database if you have not done it manually:
-```sh
+```
 npx sequelize db:create
 ```
 This command will create a new database named <em> cyan-agro </em>. After this step, access the created database and run the following command to install the PostGis extension:
@@ -54,4 +62,26 @@ npm start
 
 ```
 
-In the file ```files / cyan-agro.postman_collection.json``` there is an example for using our api, feel free to use it.
+In the file ```files/cyan-agro.postman_collection.json``` there is an example for using our api, feel free to use it.
+
+## Front-end
+
+First go to the corresponding folder:
+
+``` sh
+cd cyan-agro-web
+```
+
+With Nodejs installed, run the command to install the dependencies:
+
+```
+npm install
+
+```
+
+After installing the dependencies, run the command to run the application:
+
+```
+npm start
+```
+

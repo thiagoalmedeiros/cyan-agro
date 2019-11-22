@@ -1,10 +1,8 @@
 import React from 'react';
+import vector from '../static/leaf.svg';
 
 import {GoogleMap, Marker, withScriptjs, withGoogleMap} from "react-google-maps";
 const Map = ({ lat, lng, items }) => {
-
-    console.log(' ======= lat, lng')
-    console.log(lat, lng)
 
     return(
         <GoogleMap
@@ -18,9 +16,10 @@ const Map = ({ lat, lng, items }) => {
                         lat: item.point.coordinates[1],
                         lng: item.point.coordinates[0]
                     }}
-                    // icon={{
-                    //     url: '../static/leaf.svg'
-                    // }}
+                    icon={{
+                        url: vector,
+                        scaledSize: new window.google.maps.Size(42, 42)
+                    }}
                 />
             ))}
 
